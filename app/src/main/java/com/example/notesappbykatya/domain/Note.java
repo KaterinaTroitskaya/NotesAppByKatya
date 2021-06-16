@@ -2,28 +2,26 @@ package com.example.notesappbykatya.domain;
 
 import androidx.annotation.StringRes;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
 public class Note {
     @StringRes
-    private String name;
+    private int name;
 
-    @StringRes
+
     private  String noteDate;
 
 
     @StringRes
-    private String text;
+    private int text;
 
-    public Note(String name, String text) {
+    public Note(int name, int text) {
         this.name = name;
         this.text = text;
         this.noteDate = new Date().toString();
     }
 
-    public String getName() {
+    public int getName() {
         return name;
     }
 
@@ -31,8 +29,36 @@ public class Note {
         return noteDate;
     }
 
-    public String getText() {
+    public int getText() {
         return text;
     }
-   
+    // protected City(Parcel in) {
+    //        name = in.readInt();
+    //        coat = in.readInt();
+    //    }
+    //
+    //    public static final Creator<City> CREATOR = new Creator<City>() {
+    //        @Override
+    //        public City createFromParcel(Parcel in) {
+    //            return new City(in);
+    //        }
+    //
+    //        @Override
+    //        public City[] newArray(int size) {
+    //            return new City[size];
+    //        }
+    //    };
+    //
+
+    //
+    //    @Override
+    //    public int describeContents() {
+    //        return 0;
+    //    }
+    //
+    //    @Override
+    //    public void writeToParcel(Parcel dest, int flags) {
+    //        dest.writeInt(name);
+    //        dest.writeInt(coat);
+    //    }
 }
