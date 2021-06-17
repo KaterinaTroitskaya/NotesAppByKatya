@@ -1,10 +1,13 @@
 package com.example.notesappbykatya.domain;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import androidx.annotation.StringRes;
 
 import java.util.Date;
 
-public class Note {
+public class Note implements Parcelable {
     @StringRes
     private int name;
 
@@ -31,6 +34,16 @@ public class Note {
 
     public int getText() {
         return text;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+
     }
     // protected City(Parcel in) {
     //        name = in.readInt();

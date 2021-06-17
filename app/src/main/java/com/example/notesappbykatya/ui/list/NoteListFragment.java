@@ -1,5 +1,6 @@
 package com.example.notesappbykatya.ui.list;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,7 +21,33 @@ import java.util.List;
 
 public class NoteListFragment extends Fragment {
 
+    public interface OnNoteClicked {
+        void onNoteClicked(Note note);
+    }
+
     private NoteRepository noteRepository;
+
+    private OnNoteClicked onNoteClicked;
+
+
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+
+        if (context instanceof OnNoteClicked) {
+            onNoteClicked = (OnNoteClicked) context;
+        }
+
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+
+        onNoteClicked = null;
+
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,6 +72,16 @@ public class NoteListFragment extends Fragment {
 
         for (Note note : notes) {
             View itemView = LayoutInflater.from(requireContext()).inflate(R.layout.item_note, notesList, false);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (onNoteClicked != null) {
+                        onNoteClicked.onNoteClicked(note);
+                    }
+
+
+                }
+            });
             TextView noteName = itemView.findViewById(R.id.note_name);
             noteName.setText(note.getName());
 
